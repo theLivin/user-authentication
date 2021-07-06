@@ -30,11 +30,32 @@
       <span class="mr-2">Latest Release</span>
       <v-icon>mdi-open-in-new</v-icon>
     </v-btn>
+
+    <v-btn @click="logout">logout</v-btn>
   </v-app-bar>
 </template>
 
 <script>
-export default {};
+import firebase from "firebase";
+require("firebase/auth");
+
+export default {
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert("Successfully logged out");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          alert(error.message);
+          this.$router.push("/");
+        });
+    },
+  },
+};
 </script>
 
 <style></style>

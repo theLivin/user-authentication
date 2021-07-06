@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid" ref="form" @submit.prevent="">
+  <v-form v-model="valid" ref="form" @submit.prevent="login">
     <v-row>
       <v-col cols="12">
         <v-text-field
@@ -47,6 +47,9 @@
 </template>
 
 <script>
+import firebase from "firebase";
+require("firebase/auth");
+
 export default {
   name: "Login",
   props: {
@@ -65,6 +68,22 @@ export default {
     show: false, //password visibility status
     valid: true, // form validity
   }),
+  methods: {
+    login() {
+      this.loading = true;
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then(() => {
+          alert("Successfully logged in");
+          this.$router.push("/dashboard");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+      this.loading = false;
+    },
+  },
 };
 </script>
 

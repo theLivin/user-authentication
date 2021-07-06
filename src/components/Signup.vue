@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid" ref="form" @submit.prevent="">
+  <v-form v-model="valid" ref="form" @submit.prevent="register">
     <v-row>
       <v-col cols="12" sm="6">
         <v-text-field
@@ -49,7 +49,7 @@
           name="cpassword"
           required
           :rules="confirmPasswordRule"
-          v-model="form.cpassword"
+          v-model="cpassword"
           :append-icon="showcp ? 'mdi-eye' : 'mdi-eye-off'"
           v-on:click:append="showcp = !showcp"
           :type="showcp ? 'text' : 'password'"
@@ -81,6 +81,9 @@
 </template>
 
 <script>
+import firebase from "firebase";
+require("firebase/auth");
+
 export default {
   name: "Signup",
   props: {
@@ -95,8 +98,8 @@ export default {
       lastname: "",
       email: "",
       password: "",
-      cpassword: "",
     },
+    cpassword: "",
 
     loading: false,
     show: false,
@@ -108,8 +111,33 @@ export default {
       // confirm password validation rule
       return [
         (v) => !!v || "Please confirm your password",
-        (v) => v === this.password || "Passwords must match.",
+        (v) => v === this.form.password || "Passwords must match.",
       ];
+    },
+  },
+  methods: {
+    register() {
+      this.loading = true;
+      firebase.admin
+        .auth()
+        .createUser({
+          email: "user@example.com",
+          emailVerified: false,
+          phoneNumber: "+11234567890",
+          password: "secretPassword",
+          displayName: "John Doe",
+          photoURL: "http://www.example.com/12345678/photo.png",
+          disabled: false,
+        })
+        // .createUserWithEmailAndPassword(this.form.email, this.form.password)
+        .then(() => {
+          alert("Successfully registered! Please login.");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+      this.loading = false;
     },
   },
 };
