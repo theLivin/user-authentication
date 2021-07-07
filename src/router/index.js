@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Auth from "../views/Auth.vue";
 import firebase from "firebase";
 require("firebase/auth");
 
@@ -13,11 +12,7 @@ const routes = [
     name: "Home",
     component: Home,
   },
-  {
-    path: "/auth",
-    name: "Auth",
-    component: Auth,
-  },
+
   {
     path: "/about",
     name: "About",

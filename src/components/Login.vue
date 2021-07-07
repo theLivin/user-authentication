@@ -3,24 +3,23 @@
     <v-row>
       <v-col cols="12">
         <v-text-field
+          v-model="form.email"
+          :rules="[rules.required, rules.email]"
           label="Email"
           name="email"
-          required
-          :rules="[rules.required, rules.email]"
-          v-model="form.email"
-          autocomplete="false"
+          v-bind="fieldProps"
         ></v-text-field>
       </v-col>
       <v-col cols="12">
         <v-text-field
-          label="Password"
-          name="password"
-          required
-          :rules="[rules.required, rules.password.min]"
           v-model="form.password"
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           v-on:click:append="show = !show"
           :type="show ? 'text' : 'password'"
+          :rules="[rules.required, rules.password.min]"
+          label="Password"
+          name="password"
+          v-bind="fieldProps"
         ></v-text-field>
         <div class="text-end">
           <a href="/forgot" style="text-decoration: none" class="primary--text"
@@ -31,14 +30,11 @@
 
       <v-col cols="12">
         <v-btn
-          block
-          large
-          depressed
           :loading="loading"
           :disabled="!valid"
-          class="primary"
           :dark="valid"
           type="submit"
+          v-bind="btnProps"
           >Login</v-btn
         >
       </v-col>
@@ -49,24 +45,24 @@
 <script>
 import firebase from "firebase";
 require("firebase/auth");
+import { rules, fieldProps, btnProps } from "@/helpers";
 
 export default {
   name: "Login",
-  props: {
-    rules: {
-      type: Object,
-      required: true,
-    },
-  },
+
   data: () => ({
+    rules,
+    fieldProps,
+    btnProps,
+
     form: {
       email: "",
       password: "",
     },
 
-    loading: false, // form button loading status
-    show: false, //password visibility status
-    valid: true, // form validity
+    loading: false,
+    show: false,
+    valid: true,
   }),
   methods: {
     login() {

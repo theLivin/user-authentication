@@ -69,10 +69,6 @@ export default {
 </script>
 
 <style>
-* {
-  font-family: "ABeeZee", sans-serif;
-}
-
 html,
 body {
   overflow-x: hidden;
