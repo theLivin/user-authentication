@@ -84,6 +84,16 @@
 import firebase from "firebase";
 require("firebase/auth");
 
+// {
+//           email: "user@example.com",
+//           emailVerified: false,
+//           phoneNumber: "+11234567890",
+//           password: "secretPassword",
+//           displayName: "John Doe",
+//           photoURL: "http://www.example.com/12345678/photo.png",
+//           disabled: false,
+//         }
+
 export default {
   name: "Signup",
   props: {
@@ -108,7 +118,6 @@ export default {
   }),
   computed: {
     confirmPasswordRule() {
-      // confirm password validation rule
       return [
         (v) => !!v || "Please confirm your password",
         (v) => v === this.form.password || "Passwords must match.",
@@ -118,20 +127,24 @@ export default {
   methods: {
     register() {
       this.loading = true;
-      firebase.admin
+      firebase
         .auth()
-        .createUser({
-          email: "user@example.com",
-          emailVerified: false,
-          phoneNumber: "+11234567890",
-          password: "secretPassword",
-          displayName: "John Doe",
-          photoURL: "http://www.example.com/12345678/photo.png",
-          disabled: false,
-        })
-        // .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then(() => {
+        .createUserWithEmailAndPassword(this.form.email, this.form.password)
+        .then((result) => {
           alert("Successfully registered! Please login.");
+          result.user
+            .updateProfile({
+              displayName: `${this.form.firstname} ${this.form.lastname}`,
+            })
+            .then(
+              () => {
+                alert("Username added! Please login.");
+              },
+              (error) => {
+                alert(error.message);
+              }
+            );
+          console.log(result);
           this.$router.push("/");
         })
         .catch((error) => {
