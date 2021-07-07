@@ -69,6 +69,21 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Rubik:wght@700;800&display=swap");
+
+* {
+  font-family: "Quicksand", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rubik", sans-serif;
+}
+
 html,
 body {
   overflow-x: hidden;

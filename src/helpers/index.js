@@ -15,8 +15,8 @@ export const fieldProps = {
 };
 
 export const btnProps = {
-  block: true,
   "x-large": true,
   depressed: true,
   class: "primary",
+  rounded: true,
 };

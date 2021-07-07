@@ -8,7 +8,7 @@
         v-bind="colProps"
       >
         <v-img
-          :src="require('../assets/gabriel-alenius.jpg')"
+          :src="require(`../assets/${isLogin ? 'login' : 'register'}.jpg`)"
           max-height="100vh"
           cover
         />
@@ -32,7 +32,9 @@
         <v-row>
           <v-col cols="12" sm="8" class="mx-auto"
             ><v-card flat color="transparent">
-              <h1 class="px-7">{{ isLogin ? "Log in" : "Register" }}</h1>
+              <h1 class="px-7">
+                {{ isLogin ? "Log in" : "Register" }}
+              </h1>
               <v-card-text>
                 <v-container>
                   <Login v-if="isLogin" />

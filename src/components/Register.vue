@@ -53,7 +53,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="12">
+      <v-col cols="12" class="text-end">
         <v-btn
           :loading="loading"
           :disabled="!valid"
@@ -132,11 +132,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a,
-a:hover,
-a:active {
-  text-decoration: none;
-}
-</style>

@@ -21,14 +21,9 @@
           name="password"
           v-bind="fieldProps"
         ></v-text-field>
-        <div class="text-end">
-          <a href="/forgot" style="text-decoration: none" class="primary--text"
-            >Forgot Password?</a
-          >
-        </div>
       </v-col>
 
-      <v-col cols="12">
+      <v-col cols="12" class="text-end">
         <v-btn
           :loading="loading"
           :disabled="!valid"
@@ -82,5 +77,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
