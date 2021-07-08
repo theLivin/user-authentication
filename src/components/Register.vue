@@ -55,7 +55,7 @@
 
       <v-col cols="12" class="text-end">
         <v-btn :loading="loading" type="submit" v-bind="btnProps"
-          >Sign up</v-btn
+          >Register</v-btn
         >
       </v-col>
     </v-row>

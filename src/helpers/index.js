@@ -18,6 +18,6 @@ export const fieldProps = {
 export const btnProps = {
   "x-large": true,
   depressed: true,
-  class: "primary",
+  class: "primary font-weight-bold",
   block: true,
 };

@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <v-snackbar v-model="installAlert" color="info" top timeout="10000">
+    <v-snackbar v-model="installAlert" color="primary" top timeout="10000">
       Install App?
 
       <template v-slot:action="{ attrs }">
         <v-btn
           small
           depressed
-          color="white info--text"
+          color="white primary--text"
           class="mr-2"
           v-bind="attrs"
           @click="installer()"
@@ -69,19 +69,10 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Rubik:wght@700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 
 * {
   font-family: "Quicksand", sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Rubik", sans-serif;
 }
 
 html,

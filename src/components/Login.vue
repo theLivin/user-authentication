@@ -24,7 +24,7 @@
       </v-col>
 
       <v-col cols="12">
-        <v-btn :loading="loading" type="submit" v-bind="btnProps">Login</v-btn>
+        <v-btn :loading="loading" type="submit" v-bind="btnProps">Log in</v-btn>
       </v-col>
     </v-row>
   </v-form>

@@ -13,12 +13,11 @@
             :src="require('@/assets/logo.svg')"
             height="30%"
             width="30%"
-            class="mx-auto"
+            class="mx-auto my-5"
             contain
           />
-
           <v-card flat color="transparent">
-            <h2 class="text-center form-title">
+            <h2 class="text-center text-uppercase form-title">
               <span
                 class="link"
                 :class="{ active: isLogin }"
@@ -88,6 +87,7 @@ export default {
 
 .form-title span {
   color: rgb(223, 223, 223);
+  font-weight: bold;
 }
 
 .form-title span.active {
