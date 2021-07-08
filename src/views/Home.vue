@@ -4,45 +4,42 @@
       <v-col
         cols="12"
         md="5"
-        class="d-none d-md-block d-lg-block"
+        lg="4"
         v-bind="colProps"
+        class="py-3 px-8 mx-auto"
       >
-        <v-img
-          :src="require(`../assets/${isLogin ? 'login' : 'register'}.jpg`)"
-          max-height="100vh"
-          cover
-        />
-        <!-- <div class="mt-8 pa-12">
-          <h1 class="mb-3">Brand</h1>
-          <h2>
-            Discover the world’s top<br />
-            Designers & Creatives.
-          </h2>
-        </div> -->
-      </v-col>
-      <v-col cols="12" md="7" v-bind="colProps" class="py-3 px-8">
-        <v-toolbar color="transparent" class="mb-12" flat>
-          <v-spacer></v-spacer>
+        <div>
+          <v-img
+            :src="require('@/assets/logo.svg')"
+            height="30%"
+            width="30%"
+            class="mx-auto"
+            contain
+          />
 
-          {{ isLogin ? "Not a member" : "Already a member" }}? &nbsp;
-          <a href="#" @click.prevent="toggleForm">
-            {{ tooltipMsg }}
-          </a>
-        </v-toolbar>
-        <v-row>
-          <v-col cols="12" sm="8" class="mx-auto"
-            ><v-card flat color="transparent">
-              <h1 class="px-7">
-                {{ isLogin ? "Log in" : "Register" }}
-              </h1>
-              <v-card-text>
-                <v-container>
-                  <Login v-if="isLogin" />
-                  <Register v-else />
-                </v-container>
-              </v-card-text> </v-card
-          ></v-col>
-        </v-row>
+          <v-card flat color="transparent">
+            <h2 class="text-center form-title">
+              <span
+                class="link"
+                :class="{ active: isLogin }"
+                @click.prevent="toggleForm"
+                >Login</span
+              ><span> | </span
+              ><span
+                class="link"
+                @click.prevent="toggleForm"
+                :class="{ active: !isLogin }"
+                >Register</span
+              >
+            </h2>
+            <v-card-text>
+              <v-container>
+                <Login v-if="isLogin" />
+                <Register v-else />
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -64,6 +61,7 @@ export default {
 
     colProps: {
       style: "height: 100%; padding: 0; margin: 0",
+      class: "d-flex align-center justify-center",
     },
   }),
 
@@ -75,8 +73,24 @@ export default {
 
   computed: {
     tooltipMsg() {
-      return this.isLogin ? "Register now" : "Log in now";
+      return this.isLogin ? "Register instead!" : "Log in instead!";
     },
   },
 };
 </script>
+
+<style>
+.link:hover,
+.link:focus,
+.link:active {
+  cursor: pointer;
+}
+
+.form-title span {
+  color: rgb(223, 223, 223);
+}
+
+.form-title span.active {
+  color: var(--v-primary-base);
+}
+</style>

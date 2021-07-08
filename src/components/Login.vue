@@ -6,7 +6,7 @@
           v-model="form.email"
           :rules="[rules.required, rules.email]"
           label="Email"
-          name="email"
+          placeholder="Email"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
@@ -18,20 +18,13 @@
           :type="show ? 'text' : 'password'"
           :rules="[rules.required, rules.password.min]"
           label="Password"
-          name="password"
+          placeholder="Password"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
 
-      <v-col cols="12" class="text-end">
-        <v-btn
-          :loading="loading"
-          :disabled="!valid"
-          :dark="valid"
-          type="submit"
-          v-bind="btnProps"
-          >Login</v-btn
-        >
+      <v-col cols="12">
+        <v-btn :loading="loading" type="submit" v-bind="btnProps">Login</v-btn>
       </v-col>
     </v-row>
   </v-form>
@@ -60,9 +53,10 @@ export default {
     valid: true,
   }),
   methods: {
-    login() {
+    async login() {
+      if (!this.$refs.form.validate()) return;
       this.loading = true;
-      firebase
+      await firebase
         .auth()
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(() => {

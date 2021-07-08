@@ -12,11 +12,12 @@ export const fieldProps = {
   required: true,
   color: "primary",
   "hide-details": true,
+  "single-line": true,
 };
 
 export const btnProps = {
   "x-large": true,
   depressed: true,
   class: "primary",
-  rounded: true,
+  block: true,
 };

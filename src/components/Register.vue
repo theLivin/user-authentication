@@ -5,8 +5,8 @@
         <v-text-field
           v-model="form.firstname"
           :rules="[rules.required]"
-          label="First Name"
-          name="firstname"
+          label="First name"
+          placeholder="First name"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
@@ -14,8 +14,8 @@
         <v-text-field
           v-model="form.lastname"
           :rules="[rules.required]"
-          label="Last Name"
-          name="lastname"
+          label="Last name"
+          placeholder="Last name"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
@@ -24,7 +24,7 @@
           v-model="form.email"
           :rules="[rules.required, rules.email]"
           label="Email"
-          name="email"
+          placeholder="Email"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
@@ -36,7 +36,7 @@
           :type="show ? 'text' : 'password'"
           :rules="[rules.required, rules.password.min]"
           label="Password"
-          name="password"
+          placeholder="Password"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
@@ -47,19 +47,14 @@
           :append-icon="showcp ? 'mdi-eye' : 'mdi-eye-off'"
           v-on:click:append="showcp = !showcp"
           :type="showcp ? 'text' : 'password'"
-          label="Confirm Password"
-          name="cpassword"
+          label="Confirm password"
+          placeholder="Confirm password"
           v-bind="fieldProps"
         ></v-text-field>
       </v-col>
 
       <v-col cols="12" class="text-end">
-        <v-btn
-          :loading="loading"
-          :disabled="!valid"
-          :dark="valid"
-          type="submit"
-          v-bind="btnProps"
+        <v-btn :loading="loading" type="submit" v-bind="btnProps"
           >Sign up</v-btn
         >
       </v-col>
@@ -102,9 +97,10 @@ export default {
     },
   },
   methods: {
-    register() {
+    async register() {
+      if (!this.$refs.form.validate()) return;
       this.loading = true;
-      firebase
+      await firebase
         .auth()
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
         .then((result) => {
