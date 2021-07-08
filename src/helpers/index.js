@@ -8,7 +8,7 @@ export const rules = {
 };
 
 export const fieldProps = {
-  outlined: true,
+  // outlined: true,
   required: true,
   color: "primary",
   "hide-details": true,
