@@ -10,7 +10,7 @@
       >
         <div>
           <v-img
-            :src="require('@/assets/logo.svg')"
+            :src="require('@/assets/firebase.svg')"
             height="30%"
             width="30%"
             class="mx-auto my-5"
