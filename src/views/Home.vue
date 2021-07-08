@@ -11,8 +11,8 @@
         <div>
           <v-img
             :src="require('@/assets/chelsea.png')"
-            height="20%"
-            width="20%"
+            height="5%"
+            width="5%"
             class="mx-auto my-5"
             contain
           />
